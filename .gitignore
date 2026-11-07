@@ -1,0 +1,29 @@
+# Robot Framework Results & Logs
+results/
+output.xml
+log.html
+report.html
+*.png
+*.jpg
+
+# Environment & Credentials
+.env
+*.local
+credentials.json
+
+# Python & Virtual Environments
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+env/
+.pytest_cache/
+
+# OS Specific
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
