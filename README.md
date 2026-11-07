@@ -139,8 +139,8 @@ robot --variablefile config/environment_staging.robot tests/
 ### 2. Setup Virtual Environment
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/enterprise-portal-automation.git
-cd enterprise-portal-automation
+git clone https://github.com/kharisediwardana/enterprise-portal-automation-robotframework.git
+cd enterprise-portal-automation-robotframework
 
 # Create and activate virtual environment
 python3 -m venv venv
