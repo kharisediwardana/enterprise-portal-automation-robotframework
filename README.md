@@ -2,6 +2,7 @@
 
 ![Robot Framework](https://img.shields.io/badge/Robot%20Framework-6.0+-blue.svg)
 ![Selenium](https://img.shields.io/badge/Selenium-WebDriver-green.svg)
+![Jenkins](https://img.shields.io/badge/CI%2FCD-Jenkins%20Pipeline-red.svg)
 ![Python](https://img.shields.io/badge/Python-3.9%20%7C%203.10%20%7C%203.11-yellow.svg)
 ![Architecture](https://img.shields.io/badge/Architecture-Layered%20Keyword--Driven-orange.svg)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey.svg)
@@ -120,8 +121,7 @@ robot --variablefile config/environment_staging.robot tests/
 │       ├── temporarySuspend.robot
 │       └── ocms_CreateNotice.robot
 ├── Media/                          # Test asset repository for multi-format upload tests
-├── .github/workflows/              # Continuous Integration (GitHub Actions)
-│   └── regression.yml
+├── Jenkinsfile                     # Jenkins CI/CD Declarative Pipeline definition
 ├── helper.robot                    # Viewport scrolling, dynamic faker data utilities
 ├── resources.robot                 # Master import orchestrator & shared variables
 ├── requirements.txt                # Python dependencies
@@ -167,12 +167,21 @@ robot --include PLUS12 --outputdir results tests/admin_portal/
 
 ---
 
+## ⚙️ Jenkins CI/CD Integration
+
+The repository includes a production-ready declarative pipeline ([`Jenkinsfile`](Jenkinsfile)) configured for automated continuous integration:
+- **Parameterized Builds**: Allows on-demand selection of execution environment (`SIT` or `STAGING`), browser headless mode, and test tag filtering (`Smoke`, `Regression`, `PLUS12`).
+- **Robot Framework Jenkins Plugin**: Publishes native trend charts, pass/fail thresholds (90% pass / 75% unstable), and duration tracking directly into the Jenkins job dashboard.
+- **Artifact Archiving**: Automatically archives `output.xml`, `report.html`, `log.html`, and any failure screenshots on test execution completion.
+
+---
+
 ## 📊 Test Reporting & Analytics
 
 Robot Framework automatically generates detailed execution reports upon test completion in the `results/` directory:
 - **`report.html`**: Executive-level summary with pass/fail ratios, tags, and execution duration.
 - **`log.html`**: Granular debug log showing timestamped keyword calls, arguments, and embedded failure screenshots.
-- **`output.xml`**: Machine-readable test execution output for CI/CD test dashboard parsing.
+- **`output.xml`**: Machine-readable test execution output for Jenkins trend graphing and CI dashboard parsing.
 
 ---
 
@@ -184,7 +193,7 @@ Robot Framework automatically generates detailed execution reports upon test com
 | **Web Automation** | Selenium2Library / Selenium 4 |
 | **API Automation** | RequestsLibrary |
 | **Mock Data Generation** | FakerLibrary |
-| **CI/CD** | GitHub Actions |
+| **CI/CD** | Jenkins (Declarative Pipeline & Robot Plugin) |
 | **Language** | Python 3 |
 
 ---
